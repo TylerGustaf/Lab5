@@ -1,6 +1,7 @@
 #include <string.h>
 #include <iostream>
 #include "RobotPart.h"
+
 using namespace std;
 
 	string RobotPart::getName(){return name;}

@@ -1,5 +1,10 @@
+#include <string.h>
+#include <iostream>
+
+using namespace std;
 #ifndef __ROBOTPART_H
 #define __ROBOTPART_H 2016;
+
 
 class RobotPart{
 
@@ -21,8 +26,6 @@ public:
 	double getWeight();
 
 
-}
-
-
+};
 
 #endif
