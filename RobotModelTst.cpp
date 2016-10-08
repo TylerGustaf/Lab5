@@ -7,7 +7,7 @@
 int main()
 {
 	vector <RobotPart*> allParts;
-	vector <RobotModel*> allModels;
+	vector <RobotModel> allModels;
 	View view;
 
 	allParts.push_back(new Arm("Robs Arm", "The arm of a nice robot", 1, 45.99, 69.69));
@@ -19,29 +19,27 @@ int main()
 
 	view.printParts(allParts);
 
-	allModels.push_back(new RobotModel());
-	allModels[0]->addPart(allParts[1]);
-	allModels[0]->addPart(allParts[2]);
-	allModels[0]->addPart(allParts[0]);
-	allModels[0]->addPart(allParts[5]);
-	allModels[0]->addPart(allParts[4]);
+	allModels.push_back(RobotModel());
+	allModels[0].addPart(allParts[1]);
+	allModels[0].addPart(allParts[2]);
+	allModels[0].addPart(allParts[0]);
+	allModels[0].addPart(allParts[5]);
+	allModels[0].addPart(allParts[4]);
 	
 	double sum = 0;
 	for(int i = 0; i < 5; i++) 
 	{
-		cout << "Name: " << allModels[0]->getPart(i)->getName();
-		cout << ", Cost : " << allModels[0]->getPart(i)->getCost() <<endl;
-		sum += allModels[0]->getPart(i)->getCost();
+		cout << "Name: " << allModels[0].getPart(i)->getName();
+		cout << ", Cost : " << allModels[0].getPart(i)->getCost() <<endl;
+		sum += allModels[0].getPart(i)->getCost();
 	}
-	cout << "Total Cost: " << sum <<endl;
+	cout << "Total Cost: " << sum <<endl<<endl;
 
-	allModels[0]->setPrice(sum+20);
-	allModels[0]->setName("Robbie");
-	allModels[0]->setModelNum(50);
+	allModels[0].setPrice(sum+20);
+	allModels[0].setName("Robbie");
+	allModels[0].setModelNum(50);
 
-	cout <<endl << "Model 1:" <<endl << "Name: " << allModels[0]->getName() <<endl;
-	cout << "Model Number: " << allModels[0]->getModelNum() <<endl;
-	cout << "Price: " << allModels[0]->getPrice() <<endl;
+	view.printModels(allModels);
 
 	return 0;
 }
