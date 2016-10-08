@@ -67,4 +67,32 @@ public:
 
 };
 
+class Battery : public RobotPart
+{
+private:
+
+	double energy;
+	double maxPower;
+
+public:
+	Battery(string name1, string desc, int pNum, double cost1, double wei, double ener, double power) 
+		: RobotPart(name1, desc, pNum, cost1, wei, "Battery"), energy(ener), maxPower(power) {}
+	
+	double getEnergy();
+	double getPower();
+};
+
+class Torso : public RobotPart
+{
+private:
+
+	int possibleBatteries;
+
+public:
+	Torso(string name1, string desc, int pNum, double cost1, double wei, int numBats) 
+		: RobotPart(name1, desc, pNum, cost1, wei, "Torso"), possibleBatteries(numBats) {}
+
+	int getPossibleBatteries();
+
+};
 #endif

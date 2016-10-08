@@ -17,3 +17,8 @@ using namespace std;
 	int Motor::getMaxSpeed(){return maxSpeed;}
 	//Convert speed to Meters per Second and multiply by Newtons to get Watts
 	int Motor::powerConsumed(){return (maxSpeed * (5280/11808)) * weight;}
+
+	double Battery::getEnergy(){return energy;}
+	double Battery::getPower(){return maxPower;}
+
+	int Torso::getPossibleBatteries(){return possibleBatteries;}
