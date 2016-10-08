@@ -15,7 +15,7 @@ private:
 	string name;
 	int modelNum;
 	double price;
-	vector <RobotPart> parts;
+	vector <RobotPart*> parts;
 
 public:
 	RobotModel() : name(""), modelNum(-1), price(-1){}
@@ -23,11 +23,11 @@ public:
 	string getName();
 	int getModelNum();
 	double getPrice();
-	RobotPart getPart(int i);
+	RobotPart* getPart(int i);
 	void setName(string name1);
 	void setModelNum(int num);
 	void setPrice(double pri);
-	void addPart(RobotPart part);
+	void addPart(RobotPart* part);
 	
 	
 };

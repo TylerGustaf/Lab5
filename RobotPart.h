@@ -27,6 +27,13 @@ public:
 	double getCost();
 	double getWeight();
 
+	
+	virtual int powerConsumed(int speed) = 0;
+	virtual int getMaxSpeed() = 0;
+	virtual int powerConsumed() = 0;
+	virtual double getEnergy() = 0;
+	virtual double getPower() = 0;
+	virtual int getPossibleBatteries() = 0;
 
 };
 
@@ -38,6 +45,12 @@ public:
 	Head(string name1, string desc, int pNum, double cost1, double wei) 
 		: RobotPart(name1, desc, pNum, cost1, wei, "Head") {}
 
+	int powerConsumed(int speed);
+	int getMaxSpeed();
+	int powerConsumed();
+	double getEnergy();
+	double getPower();
+	int getPossibleBatteries();
 };
 
 class Arm : public RobotPart
@@ -49,6 +62,12 @@ public:
 		: RobotPart(name1, desc, pNum, cost1, wei, "Arm") {}
 
 	int powerConsumed(int speed);
+	
+	int getMaxSpeed();
+	int powerConsumed();
+	double getEnergy();
+	double getPower();
+	int getPossibleBatteries();
 
 };
 
@@ -65,6 +84,11 @@ public:
 	int getMaxSpeed();
 	int powerConsumed();
 
+	int powerConsumed(int speed);
+	double getEnergy();
+	double getPower();
+	int getPossibleBatteries();
+
 };
 
 class Battery : public RobotPart
@@ -80,6 +104,11 @@ public:
 	
 	double getEnergy();
 	double getPower();
+
+	int powerConsumed(int speed);
+	int getMaxSpeed();
+	int powerConsumed();
+	int getPossibleBatteries();
 };
 
 class Torso : public RobotPart
@@ -93,6 +122,12 @@ public:
 		: RobotPart(name1, desc, pNum, cost1, wei, "Torso"), possibleBatteries(numBats) {}
 
 	int getPossibleBatteries();
+
+	int powerConsumed(int speed);
+	int getMaxSpeed();
+	int powerConsumed();
+	double getEnergy();
+	double getPower();
 
 };
 #endif
