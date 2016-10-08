@@ -5,6 +5,30 @@
 #include "View.h"
 
 
+void View::printMM()
+{
+	cout <<endl;
+	cout << "Main Menu" <<endl;
+	cout << "---------" <<endl;
+	cout << "1. Create" <<endl;
+	cout << "2. Report" <<endl;
+	cout << "3. Save" <<endl;
+	cout << "0. Quit" <<endl;
+}
+
+void View::printCM()
+{
+	cout <<endl;
+	cout << "Create" <<endl;
+	cout << "------" <<endl;
+	cout << "1. Order" <<endl;
+	cout << "2. Customer" <<endl;
+	cout << "3. Sales Associate" <<endl;
+	cout << "4. Robot Model" <<endl;
+	cout << "5. Robot Part" <<endl;
+	cout << "0. Return to Main Menu" <<endl;
+}
+
 void View::printParts(vector <RobotPart*> parts)
 {
 	cout << "***List of All Current Parts***" <<endl;

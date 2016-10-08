@@ -13,6 +13,7 @@ public:
 	View(){}
 
 	void printMM();
+	void printCM();
 	void printParts(vector <RobotPart*> parts);
 	void printModels(vector <RobotModel> models);
 

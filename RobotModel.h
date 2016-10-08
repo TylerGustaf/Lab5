@@ -23,6 +23,7 @@ public:
 	string getName();
 	int getModelNum();
 	double getPrice();
+	int getNumOfParts();
 	RobotPart* getPart(int i);
 	void setName(string name1);
 	void setModelNum(int num);
