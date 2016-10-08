@@ -11,8 +11,9 @@ using namespace std;
 	double RobotPart::getCost(){return cost;}
 	double RobotPart::getWeight(){return weight;}
 
-	int Arm::powerConsumed(int speed)
-	{
-		//Convert speed to Meters per Second and multiply by Newtons to get Watts
-		return (speed * (5280/11808)) * weight;
-	}
+	//Convert speed to Meters per Second and multiply by Newtons to get Watts
+	int Arm::powerConsumed(int speed){return (speed * (5280/11808)) * weight;}
+
+	int Motor::getMaxSpeed(){return maxSpeed;}
+	//Convert speed to Meters per Second and multiply by Newtons to get Watts
+	int Motor::powerConsumed(){return (maxSpeed * (5280/11808)) * weight;}

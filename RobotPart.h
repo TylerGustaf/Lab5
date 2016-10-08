@@ -30,14 +30,40 @@ public:
 
 };
 
+class Head : public RobotPart
+{
+private:
+
+public:
+	Head(string name1, string desc, int pNum, double cost1, double wei) 
+		: RobotPart(name1, desc, pNum, cost1, wei, "Head") {}
+
+};
+
 class Arm : public RobotPart
 {
 private:
 
 public:
-	Arm(string name1, string desc, int pNum, double cost1, double wei) : RobotPart(name1, desc, pNum, cost1, wei, "Arm") {}
+	Arm(string name1, string desc, int pNum, double cost1, double wei) 
+		: RobotPart(name1, desc, pNum, cost1, wei, "Arm") {}
 
 	int powerConsumed(int speed);
+
+};
+
+class Motor : public RobotPart
+{
+private:
+
+	int maxSpeed;
+
+public:
+	Motor(string name1, string desc, int pNum, double cost1, double wei, int speed) 
+		: RobotPart(name1, desc, pNum, cost1, wei, "Motor"), maxSpeed(speed) {}
+
+	int getMaxSpeed();
+	int powerConsumed();
 
 };
 
