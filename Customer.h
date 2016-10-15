@@ -13,16 +13,16 @@ class Customer
 private:
 
 	string name;
-	int customerNum;
+	double customerNum;
 	double wallet;
 	//vector <Order> orders;
 
 public:
 
-	Customer(string name1, int custNum) : name(name1), customerNum(custNum){}
+	Customer(string name1, double custNum) : name(name1), customerNum(custNum), wallet(0){}
 
 	string getName();
-	int getCustomerNum();
+	double getCustomerNum();
 	double getWallet();
 	void setWallet(double newWallet);
 	//void addOrder(Order order);

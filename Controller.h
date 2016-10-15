@@ -24,11 +24,11 @@ private:
 	vector <Customer> allCustomers;
 	View view;
 	
-	//Temporary variables for adding parts and models
-	int menu, partFromList, partNum, partPosBats, maxSP, modelNum;
-	int custNum, head, motor, arm, torso, battery, maxBat;
-	string custName, partName, partDesc, modelName, trash;
-	double partCost, partWeight, partEnergy, maxPow, modelPrice, sum;
+	//Temporary variables for adding parts, models, customers, sales associates, and orders
+	int menu, partFromList, partNum, partPosBats, maxSP, modelNum, quan;
+	int num, head, motor, arm, torso, battery, maxBat, seller, cust;
+	string name, partName, partDesc, modelName, trash;
+	double partCost, partWeight, partEnergy, maxPow, modelPrice, sum, custNum;
 
 
 public:
@@ -37,6 +37,8 @@ public:
 
 	int cli();
 	void addCustomer();
+	void addSalesAssoc();
+	void addOrder();
 	void addPart();
 	void addModel();
 

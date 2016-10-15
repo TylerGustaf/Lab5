@@ -4,7 +4,10 @@
 #include "RobotModel.h"
 #include "RobotPart.h"
 #include "Customer.h"
+#include "SalesAssoc.h"
+#include "Order.h"
 #include "View.h"
+
 
 
 void View::printMM()
@@ -43,6 +46,21 @@ void View::printRM()
 	cout << "5. Robot Parts" <<endl;
 	cout << "0. Return to Main Menu" <<endl;
 }
+void View::printOrders(vector <Order> orders)
+{
+	cout << "***List of All Current Orders***" <<endl;
+	for(int i = 0; i < orders.size(); i++)
+	{
+		cout << i+1 << ".";
+		cout << "\tOrder Number: " << orders[i].getOrderNum() <<endl;
+		cout << "\tRobot Model Name: " << orders[i].getRobot().getName() <<endl;
+		cout << "\tRobot Model Number: " << orders[i].getRobot().getModelNum() <<endl;
+		cout << "\tQuantity: " << orders[i].getQuantity() <<endl;
+		cout << "\tTotal Price: $" << orders[i].getTotalPrice() <<endl;
+		cout << "\tSold by: " << orders[i].getSeller().getName() <<endl;
+		cout << "\tBought by: " << orders[i].getBuyer().getName() <<endl;
+	}
+}
 
 void View::printCustomers(vector <Customer> customers)
 {
@@ -52,7 +70,18 @@ void View::printCustomers(vector <Customer> customers)
 		cout << i+1 << ".";
 		cout << "\tCustomer Name: " << customers[i].getName() <<endl;
 		cout << "\tCustomer Number: " << customers[i].getCustomerNum() <<endl;
-		cout << "\tWallet: " << customers[i].getWallet() <<endl;
+		cout << "\tWallet: $" << customers[i].getWallet() <<endl;
+	}
+}
+
+void View::printSalesAssoc(vector <SalesAssoc> salesAssoc)
+{
+	cout << "***List of All Current Sales Associates***" <<endl;
+	for(int i = 0; i < salesAssoc.size(); i++)
+	{
+		cout << i+1 << ".";
+		cout << "\tSales Associate's Name: " << salesAssoc[i].getName() <<endl;
+		cout << "\tEmployee Number: " << salesAssoc[i].getEmployeeNum() <<endl;
 	}
 }
 

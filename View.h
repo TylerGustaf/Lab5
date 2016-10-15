@@ -6,6 +6,8 @@
 #include "RobotModel.h"
 #include "RobotPart.h"
 #include "Customer.h"
+#include "SalesAssoc.h"
+#include "Order.h"
 
 class View
 {
@@ -17,7 +19,9 @@ public:
 	void printMM();
 	void printCM();
 	void printRM();
+	void printOrders(vector <Order> orders);
 	void printCustomers(vector <Customer> customers);
+	void printSalesAssoc(vector <SalesAssoc> salesAssoc);
 	void printParts(vector <RobotPart*> parts);
 	void printModels(vector <RobotModel> models);
 	void printModelParts(RobotModel model);

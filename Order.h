@@ -13,17 +13,22 @@ class Order
 {
 private:
 	int orderNum;
+	int quantity;
 	RobotModel robot;
 	SalesAssoc seller;
 	Customer buyer;
 
 public:
-	Order(int num, RobotModel model, SalesAssoc saleAssoc, Customer cust) : orderNum(num), robot(model), seller(saleAssoc), buyer(cust){}
+	Order(int num, RobotModel model, int quan, SalesAssoc saleAssoc, Customer cust) : orderNum(num), robot(model), quantity(quan), seller(saleAssoc), buyer(cust){}
 
 	int getOrderNum();
 	RobotModel getRobot();
 	SalesAssoc getSeller();
 	Customer getBuyer();
+	double getTotalPrice();
+	double getTax();
+	int getQuantity();
+
 
 };
 #endif

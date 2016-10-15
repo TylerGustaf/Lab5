@@ -25,11 +25,11 @@ int Controller::cli()
 			{
 				view.printCM();
 				cin >> menu;
-				if(menu == 1){}
+				if(menu == 1){addOrder();}
 
 				else if(menu == 2){addCustomer();}
 
-				else if(menu == 3){}
+				else if(menu == 3){addSalesAssoc();}
 
 				else if(menu == 4){addModel();}
 
@@ -45,11 +45,11 @@ int Controller::cli()
 			{
 				view.printRM();
 				cin >> menu;
-				if(menu == 1){}
+				if(menu == 1){view.printOrders(allOrders);}
 
-				else if(menu == 2){view.printCustomers(allCustomers); menu = -1;}
+				else if(menu == 2){view.printCustomers(allCustomers);}
 
-				else if(menu == 3){}
+				else if(menu == 3){view.printSalesAssoc(allSalesAssoc);}
 
 				else if(menu == 4)
 				{
@@ -88,10 +88,64 @@ void Controller::addCustomer()
 {
 	cout << "Please enter the Customer's Name" <<endl;
 	getline(cin, trash);
-	cin >> custName;
+	getline(cin, name);
 	cout << "Please enter the Customer's Phone Number (Without -'s)" <<endl;
 	cin >> custNum;
-	allCustomers.push_back(Customer(custName, custNum));
+	allCustomers.push_back(Customer(name, custNum));
+}
+
+void Controller::addSalesAssoc()
+{
+	cout << "Please enter the Sales Associate's Name" <<endl;
+	getline(cin, trash);
+	getline(cin, name);
+	cout << "Please enter their Employee Number" <<endl;
+	cin >> num;
+	allSalesAssoc.push_back(SalesAssoc(name, num));
+}
+
+void Controller::addOrder()
+{
+	if(allModels.size() < 1)
+	{
+		cout << "No Models Found. Please Try Again When Models are Available" <<endl;
+		return;
+	}
+	if(allCustomers.size() < 1)
+	{
+		cout << "No Customers Found. Please Try Again When Customers are Registered" <<endl;
+		return;
+	}
+	if(allSalesAssoc.size() < 1)
+	{
+		cout << "No Sales Associates Found. Please Try Again When Associates are Registered" <<endl;
+		return;
+	}
+
+	cout << "Please enter an Order Number" <<endl;
+	cin >> num;
+	do
+	{
+		cout << "**Please select a Model from Our**" <<endl;
+		view.printModels(allModels);
+		cin >> modelNum;
+	}while(modelNum < 1 || modelNum > allModels.size());
+	cout << "Please enter a Quantity" << endl;
+	cin >> quan;
+	do
+	{
+		cout << "**Please select a Sales Associate from Our**" << endl;
+		view.printSalesAssoc(allSalesAssoc);
+		cin >> seller;
+	}while(seller < 1 || seller > allSalesAssoc.size());
+	do
+	{
+		cout << "**Please select a Customer from Our**" << endl;
+		view.printCustomers(allCustomers);
+		cin >> cust;
+	}while(cust < 1 || cust > allCustomers.size());
+	
+	allOrders.push_back(Order(num, allModels[modelNum-1], quan, allSalesAssoc[seller-1], allCustomers[cust-1]));
 }
 
 void Controller::addPart()
@@ -103,7 +157,7 @@ void Controller::addPart()
 	cout << "Please enter the Name of the Part: ";
 	getline(cin, trash);
 	getline(cin, partName);
-	cout << partName <<endl;
+	//cout << partName <<endl;
 	cout << "Please enter the Part Number: ";
 	cin >> partNum;
 	cout << "Please enter the Cost of the Part: ";
@@ -112,7 +166,7 @@ void Controller::addPart()
 	cin >> partWeight;
 	cout << "Please enter a Description of the Part:" <<endl;
 	getline(cin, trash);
-	getline(cin,partDesc);
+	getline(cin, partDesc);
 	
 
 	if(partFromList == 1)
@@ -143,7 +197,6 @@ void Controller::addPart()
 		cin >> maxPow;
 		allParts.push_back(new Battery(partName, partDesc, partNum, partCost, partWeight, partEnergy, maxPow));
 	}
-
 }
 
 void Controller::addModel()
