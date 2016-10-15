@@ -1,10 +1,11 @@
 //Made by Tyler Gustaf
+
+#ifndef __ROBOTPART_H
+#define __ROBOTPART_H 2016;
 #include <string.h>
 #include <iostream>
 
 using namespace std;
-#ifndef __ROBOTPART_H
-#define __ROBOTPART_H 2016;
 
 
 class RobotPart{

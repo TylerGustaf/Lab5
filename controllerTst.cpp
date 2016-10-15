@@ -5,6 +5,9 @@
 #include <vector>
 #include "View.h"
 #include "Controller.h"
+#include "Customer.h"
+#include "SalesAssoc.h"
+#include "Order.h"
 
 
 int main()

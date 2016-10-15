@@ -1,12 +1,12 @@
 //Made by Tyler Gustaf
+#ifndef __ROBOTMODEL_H
+#define __ROBOTMODEL_H 2016
 #include <string.h>
 #include <iostream>
 #include "RobotPart.h"
 #include <vector>
 
 using namespace std;
-#ifndef __ROBOTMODEL_H
-#define __ROBOTMODEL_H 2016
 
 
 class RobotModel
@@ -17,6 +17,7 @@ private:
 	int modelNum;
 	double price;
 	vector <RobotPart*> parts;
+	
 
 public:
 	RobotModel() : name(""), modelNum(-1), price(-1){}

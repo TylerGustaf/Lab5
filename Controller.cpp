@@ -5,6 +5,9 @@
 #include <vector>
 #include "View.h"
 #include "Controller.h"
+#include "Customer.h"
+#include "SalesAssoc.h"
+#include "Order.h"
 
 
 Controller& Controller::getInstance(){static Controller instance; return instance;}
@@ -24,7 +27,7 @@ int Controller::cli()
 				cin >> menu;
 				if(menu == 1){}
 
-				else if(menu == 2){}
+				else if(menu == 2){addCustomer();}
 
 				else if(menu == 3){}
 
@@ -36,7 +39,42 @@ int Controller::cli()
 			menu = -1;
 		}
 		
-		else if(menu == 2){view.printParts(allParts);}
+		else if(menu == 2)
+		{
+			do
+			{
+				view.printRM();
+				cin >> menu;
+				if(menu == 1){}
+
+				else if(menu == 2){view.printCustomers(allCustomers); menu = -1;}
+
+				else if(menu == 3){}
+
+				else if(menu == 4)
+				{
+					do
+					{
+						view.printModels(allModels);
+						cout <<endl << "Enter a Model's List Number to View its Parts (0 to Exit)" <<endl;
+						cin >> menu;
+						if(menu > 0 && menu <= allModels.size())
+						{
+							view.printModelParts(allModels[menu-1]);
+							getline(cin, trash);
+							cout <<endl << "Enter any key to return to List of Models" <<endl;
+							getline(cin, trash);
+						}
+
+					}while(menu != 0);
+					menu = -1;
+				}
+
+				else if(menu == 5){addPart();}
+
+			}while(menu != 0);
+			menu = -1;
+		}
 
 		else if(menu == 3){view.printModels(allModels);}
 
@@ -44,6 +82,16 @@ int Controller::cli()
 	}while(menu != 0);
 
 	return 0;
+}
+
+void Controller::addCustomer()
+{
+	cout << "Please enter the Customer's Name" <<endl;
+	getline(cin, trash);
+	cin >> custName;
+	cout << "Please enter the Customer's Phone Number (Without -'s)" <<endl;
+	cin >> custNum;
+	allCustomers.push_back(Customer(custName, custNum));
 }
 
 void Controller::addPart()
