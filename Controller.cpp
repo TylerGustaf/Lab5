@@ -76,7 +76,7 @@ int Controller::cli()
 			menu = -1;
 		}
 
-		else if(menu == 3){view.printModels(allModels);}
+		else if(menu == 3){printf("\nFeature not yet implimented\n");}
 
 
 	}while(menu != 0);
