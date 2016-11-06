@@ -26,7 +26,6 @@ public:
 	void printModels(vector <RobotModel> models);
 	void printModelParts(RobotModel model);
 
-
 };
 
 

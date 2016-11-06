@@ -26,6 +26,7 @@
 #include <FL/Fl_Text_Display.H>
 #include <FL/Fl_Value_Input.H>
 #include <FL/Fl_Valuator.H>
+#include <FL/Fl_Text_Buffer.H>
 
 //Callback Functions
 void ButtonCB(Fl_Widget*, void*);
@@ -37,6 +38,7 @@ void ArmCB(Fl_Widget*, void*);
 void TorsoCB(Fl_Widget*, void*);
 void MotorCB(Fl_Widget*, void*);
 void BatteryCB(Fl_Widget*, void*);
+void ReportPartsCB(Fl_Widget*, void*);
 
 //Vectors
 vector <RobotPart*> allParts;
@@ -66,6 +68,7 @@ Fl_Round_Button *bat1;
 Fl_Round_Button *bat2;
 Fl_Round_Button *bat3;
 Fl_Tabs *tabs;
+Fl_Text_Buffer *buffer;
 Fl_Menu_Bar *menubar;
 Fl_Menu_Item menuItems[] = {
 							{"&File", 0, 0, 0, FL_SUBMENU},
@@ -199,7 +202,7 @@ int main()
 					partNumGUI = new Fl_Value_Input(w-100,120,90,25,"Part Number:");
 					partCostGUI = new Fl_Value_Input(w-100,150,90,25,"Part Cost:");
 					partWeightGUI = new Fl_Value_Input(w-100,180,90,25,"Part Weight:");
-					descriptionGUI = new Fl_Multiline_Input(w-200,210,190,80,"Part Description:");
+					descriptionGUI = new Fl_Multiline_Input(w-200,210,190,80,"Part Description:\n(Max.500)");
 					maxSpeedGUI = new Fl_Value_Input(w-100,h-180,90,25,"Motor Speed MPH:");
 					maxSpeedGUI->deactivate();
 					energyGUI = new Fl_Value_Input(w-100,h-155,90,25,"Battery's Energy:");
@@ -254,7 +257,12 @@ int main()
 				subTab1->end();
 				Fl_Group *subTab2 = new Fl_Group(0, 80, w, h-80, "Report");
 				{
-
+					Fl_Button *update = new Fl_Button(0,h-25,75,25,"Update");
+					update->when(FL_WHEN_RELEASE);
+					update->callback(ReportPartsCB);
+					Fl_Text_Display *report = new Fl_Text_Display(0, 85, w, h-110,"");
+					buffer = new Fl_Text_Buffer();
+					report->buffer(buffer);
 				}
 				subTab2->end();
 			}
@@ -615,5 +623,56 @@ void AddPartCB(Fl_Widget* w, void* p)
 		nameGUI->replace(0,nameGUI->size(),"",0);
 		descriptionGUI->replace(0,descriptionGUI->size(),"",0);
 		win->redraw();
+	}
+}
+
+void ReportPartsCB(Fl_Widget*, void*)
+{
+	char text[500];
+	buffer->text("");
+	buffer->append("***List of All Current Parts***\n");
+	for(int i = 0; i < allParts.size(); i++)
+	{
+		sprintf_s(text,sizeof(text),"%d.",i+1);
+		buffer->append(text);
+		buffer->append("\tPart Number: ");
+		sprintf_s(text,sizeof(text),"%d\n",allParts[i]->getPartNum());
+		buffer->append(text);
+		buffer->append("\tName: ");
+		sprintf_s(text,sizeof(text),"%s\n",allParts[i]->getName().c_str());
+		buffer->append(text);
+		buffer->append("\tCost: ");
+		sprintf_s(text,sizeof(text),"%.2f\n",allParts[i]->getCost());
+		buffer->append(text);
+		buffer->append("\tWeight: ");
+		sprintf_s(text,sizeof(text),"%.2f\n",allParts[i]->getWeight());
+		buffer->append(text);
+		buffer->append("\tType: ");
+		sprintf_s(text,sizeof(text),"%s\n",allParts[i]->getPartType().c_str());
+		buffer->append(text);
+		if(allParts[i]->getPartType() == "Motor")
+		{
+			buffer->append("\tMax Speed: ");
+			sprintf_s(text,sizeof(text),"%d\n",allParts[i]->getMaxSpeed());
+			buffer->append(text);
+		}
+		else if(allParts[i]->getPartType() == "Battery")
+		{
+			buffer->append("\tEnergy: ");
+			sprintf_s(text,sizeof(text),"%f\n",allParts[i]->getEnergy());
+			buffer->append(text);
+			buffer->append("\tMax Power: ");
+			sprintf_s(text,sizeof(text),"%f\n",allParts[i]->getPower());
+			buffer->append(text);
+		}
+		else if(allParts[i]->getPartType() == "Torso")
+		{
+			buffer->append("\tPossible Batteries: ");
+			sprintf_s(text,sizeof(text),"%d\n",allParts[i]->getPossibleBatteries());
+			buffer->append(text);
+		}
+		buffer->append("\tDescription: ");
+		sprintf_s(text,sizeof(text),"%s\n\n",allParts[i]->getDescription().c_str());
+		buffer->append(text);
 	}
 }

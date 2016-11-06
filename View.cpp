@@ -153,3 +153,4 @@ void View::printModelParts(RobotModel model)
 
 	}
 }
+
