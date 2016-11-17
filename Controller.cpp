@@ -91,7 +91,7 @@ void Controller::addCustomer()
 	getline(cin, name);
 	cout << "Please enter the Customer's Phone Number (Without -'s)" <<endl;
 	cin >> custNum;
-	allCustomers.push_back(Customer(name, custNum));
+	//allCustomers.push_back(Customer(name, custNum));
 }
 
 void Controller::addSalesAssoc()

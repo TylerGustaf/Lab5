@@ -16,16 +16,20 @@ private:
 	double customerNum;
 	double wallet;
 	//vector <Order> orders;
+	string custPhone;
+	string custEmail;
 
 public:
 
-	Customer(string name1, double custNum) : name(name1), customerNum(custNum), wallet(0){}
+	Customer(string name1, double custNum, double wal, string phone, string email) : name(name1), customerNum(custNum), custPhone(phone), custEmail(email), wallet(wal){}
 
 	string getName();
 	double getCustomerNum();
 	double getWallet();
 	void setWallet(double newWallet);
 	//void addOrder(Order order);
+	string getPhone();
+	string getEmail();
 
 };
 #endif
