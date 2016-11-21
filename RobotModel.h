@@ -17,20 +17,26 @@ private:
 	int modelNum;
 	double price;
 	vector <RobotPart*> parts;
+	string image;
+	int jpeg;
 	
 
 public:
-	RobotModel() : name(""), modelNum(-1), price(-1){}
+	RobotModel() : name(""), modelNum(-1), price(-1), image(""){}
 
 	string getName();
 	int getModelNum();
 	double getPrice();
+	string getImage();
+	int isJPEG();
 	int getNumOfParts();
 	RobotPart* getPart(int i);
 	void setName(string name1);
 	void setModelNum(int num);
 	void setPrice(double pri);
 	void addPart(RobotPart* part);
+	void setImage(string pic);
+	void setPicJPEG(int type);
 	
 	
 };
